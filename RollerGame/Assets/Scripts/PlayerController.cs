@@ -27,49 +27,44 @@ public class PlayerController : MonoBehaviour {
         ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
      
         var JointObject = GameObject.Find("Myo");
-        float x = JointObject.transform.rotation.eulerAngles.x;
-        float y = JointObject.transform.rotation.eulerAngles.y;
-        //Debug.Log("X IS: " + x);
-        //Debug.Log("Y IS: " + y);
-        //float moveHorizontal = Input.GetAxis("Horizontal");
-        //float moveVertical = Input.GetAxis("Vertical");
+        
+        float x = JointObject.transform.right.x;
+        float y = JointObject.transform.right.y;
+        
         float moveHorizontal = 0;
         float moveVertical = 0;
-
+        //Debug.Log("move Vertical in les than " + JointObject.transform.right.x);
+        //Debug.Log("move horizontal in les than " + JointObject.transform.right.y);
         //vertical movement
-        if(x < 13)        
+        if(x > 0.1)        
         {
             //move forward
-            moveVertical = moveVertical + 1;
-            Debug.Log("moveVertical in les than 5" +x);
+            moveVertical = moveVertical + 0.5f;
         }
-        else if(x > 13 && x < 23 || x < 0)
+        else if(x < 0.1 && x > 0.0)
         {
             // do nothing
         }
-        else if(x > 23)
+        else if(x < 0.0)
         {
             //move backward
-            moveVertical = moveVertical - 1;
-             Debug.Log("moveVertical in greater than 5" +x);
+            moveVertical = moveVertical - 0.5f;
         }
 
         //horizontal movement
-        if(y < 150)        
-        {
-            //move left
-            moveHorizontal = moveHorizontal - 1;
-            Debug.Log("moveVertical in les than 5" +x);
-        }
-        else if(y > 150 && y < 165)
-        {
-            // do nothing
-        }
-        else if(y > 165 || y < 0)
+        if(y < -0.96 )        
         {
             //move right
             moveHorizontal = moveHorizontal + 1;
-             Debug.Log("moveVertical in greater than 5" +x);
+        }
+        else if(y > -0.96 && y < -0.95)
+        {
+            // do nothing
+        }
+        else if(y > -0.95)
+        {
+            //move left
+            moveHorizontal = moveHorizontal - 1;
         }
 
 
