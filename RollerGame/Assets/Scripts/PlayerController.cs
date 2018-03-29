@@ -31,8 +31,48 @@ public class PlayerController : MonoBehaviour {
         float y = JointObject.transform.rotation.eulerAngles.y;
         //Debug.Log("X IS: " + x);
         //Debug.Log("Y IS: " + y);
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        //float moveHorizontal = Input.GetAxis("Horizontal");
+        //float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = 0;
+        float moveVertical = 0;
+
+        //vertical movement
+        if(x < 13)        
+        {
+            //move forward
+            moveVertical = moveVertical + 1;
+            Debug.Log("moveVertical in les than 5" +x);
+        }
+        else if(x > 13 && x < 23 || x < 0)
+        {
+            // do nothing
+        }
+        else if(x > 23)
+        {
+            //move backward
+            moveVertical = moveVertical - 1;
+             Debug.Log("moveVertical in greater than 5" +x);
+        }
+
+        //horizontal movement
+        if(y < 150)        
+        {
+            //move left
+            moveHorizontal = moveHorizontal - 1;
+            Debug.Log("moveVertical in les than 5" +x);
+        }
+        else if(y > 150 && y < 165)
+        {
+            // do nothing
+        }
+        else if(y > 165 || y < 0)
+        {
+            //move right
+            moveHorizontal = moveHorizontal + 1;
+             Debug.Log("moveVertical in greater than 5" +x);
+        }
+
+
 
         if (thalmicMyo.pose != _lastPose)
         {
@@ -40,10 +80,11 @@ public class PlayerController : MonoBehaviour {
             if (thalmicMyo.pose == Pose.WaveOut)
             {
                 Debug.Log("turn right");
+                //moveHorizontal = moveHorizontal + 10;
             }
             else if(thalmicMyo.pose == Pose.WaveIn)
             {
-                Debug.Log("turn left");
+                //moveHorizontal = moveHorizontal - 10;
             }
             else if (thalmicMyo.pose == Pose.DoubleTap)
             {
