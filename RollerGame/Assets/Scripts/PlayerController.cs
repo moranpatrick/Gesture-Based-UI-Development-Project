@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour {
         var JointObject = GameObject.Find("Myo");
         float x = JointObject.transform.rotation.eulerAngles.x;
         float y = JointObject.transform.rotation.eulerAngles.y;
-        Debug.Log("X IS: " + x);
-        Debug.Log("Y IS: " + y);
+        //Debug.Log("X IS: " + x);
+        //Debug.Log("Y IS: " + y);
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -39,28 +39,28 @@ public class PlayerController : MonoBehaviour {
             _lastPose = thalmicMyo.pose;
             if (thalmicMyo.pose == Pose.WaveOut)
             {
-                
+                Debug.Log("turn right");
             }
             else if(thalmicMyo.pose == Pose.WaveIn)
             {
-                
+                Debug.Log("turn left");
             }
             else if (thalmicMyo.pose == Pose.DoubleTap)
             {
-                
+                Debug.Log("turn speed up");
             }
             else if (thalmicMyo.pose == Pose.FingersSpread)
             {
-                
+                Debug.Log("turn speed down");
             }
             else if (thalmicMyo.pose == Pose.Fist)
             {
-            
+                Debug.Log("Restart");
             }
         }
         else
         {
-            
+            //Debug.Log("do nothing");
         }
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
