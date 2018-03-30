@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pose = Thalmic.Myo.Pose;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour {
 
     private void Start()
     {
+        SceneManager.LoadScene(sceneName:"Menu");
+        Scene scene = SceneManager.GetActiveScene();
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
@@ -24,7 +27,36 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        Scene scene = SceneManager.GetActiveScene();
         ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
+        if(scene.name.ToString() == "Menu")
+        {
+            if(thalmicMyo.pose != _lastPose)
+            {
+                _lastPose = thalmicMyo.pose;
+
+                // if spread fingers new game
+                if(thalmicMyo.pose == Pose.Fist)
+                {
+                    Debug.Log("Fist");
+                    SceneManager.LoadScene(sceneName:"MiniGame");
+                }
+
+                // if fist switch scene to old game
+                if(thalmicMyo.pose == Pose.FingersSpread)
+                {
+                    Debug.Log("spread fingers");
+                    SceneManager.LoadScene(sceneName:"MiniGame");
+                }
+                // if double tap exit
+                if(thalmicMyo.pose == Pose.DoubleTap)
+                {
+                    Debug.Log("double tap");
+                    SceneManager.LoadScene(sceneName:"Menu");
+                }
+            }
+        }
+    
      
         var JointObject = GameObject.Find("Myo");
         
@@ -33,8 +65,6 @@ public class PlayerController : MonoBehaviour {
         
         float moveHorizontal = 0;
         float moveVertical = 0;
-        //Debug.Log("move Vertical in les than " + JointObject.transform.right.x);
-        //Debug.Log("move horizontal in les than " + JointObject.transform.right.y);
         //vertical movement
         if(x > 0.1)        
         {
