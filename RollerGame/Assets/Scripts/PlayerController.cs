@@ -14,50 +14,70 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private int count;
     public Text winText;
+    public GameObject pauseImage;
+
+    private bool paused;
+   
 
     private void Start()
     {
-        SceneManager.LoadScene(sceneName:"Menu");
-        Scene scene = SceneManager.GetActiveScene();
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
         winText.text = "";
+        paused = false;
     }
 
     private void FixedUpdate()
     {
-        Scene scene = SceneManager.GetActiveScene();
+
         ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
-        if(scene.name.ToString() == "Menu")
+
+        if (thalmicMyo.pose != _lastPose)
         {
-            if(thalmicMyo.pose != _lastPose)
+            _lastPose = thalmicMyo.pose;
+            if (thalmicMyo.pose == Pose.WaveOut)
             {
-                _lastPose = thalmicMyo.pose;
-
-                // if spread fingers new game
-                if(thalmicMyo.pose == Pose.Fist)
-                {
-                    Debug.Log("Fist");
-                    SceneManager.LoadScene(sceneName:"MiniGame");
+               
+            }
+            else if(thalmicMyo.pose == Pose.WaveIn)
+            {
+                
+            }
+            else if (thalmicMyo.pose == Pose.DoubleTap)
+            {   
+                if(paused){
+                    Debug.Log("Quitting...");
+                    Application.Quit();
                 }
+                // Pause Menu Logic
+                rb.isKinematic = true;
+                paused = true;
+                pauseImage.SetActive(true);
 
-                // if fist switch scene to old game
-                if(thalmicMyo.pose == Pose.FingersSpread)
-                {
-                    Debug.Log("spread fingers");
-                    SceneManager.LoadScene(sceneName:"MiniGame");
+            }
+            else if (thalmicMyo.pose == Pose.FingersSpread)
+            {
+                if(paused){
+                    paused = false;
+                    
+                    pauseImage.gameObject.SetActive(false);
+                    rb.isKinematic = false;
                 }
-                // if double tap exit
-                if(thalmicMyo.pose == Pose.DoubleTap)
-                {
-                    Debug.Log("double tap");
-                    SceneManager.LoadScene(sceneName:"Menu");
+            }
+            else if (thalmicMyo.pose == Pose.Fist)
+            {
+                if(paused){
+                    paused = false;
+                    SceneManager.LoadScene(1);
                 }
             }
         }
-    
-     
+        else
+        {
+            
+        }
+               
         var JointObject = GameObject.Find("Myo");
         
         float x = JointObject.transform.right.x;
@@ -98,39 +118,9 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-
-        if (thalmicMyo.pose != _lastPose)
-        {
-            _lastPose = thalmicMyo.pose;
-            if (thalmicMyo.pose == Pose.WaveOut)
-            {
-                Debug.Log("turn right");
-                //moveHorizontal = moveHorizontal + 10;
-            }
-            else if(thalmicMyo.pose == Pose.WaveIn)
-            {
-                //moveHorizontal = moveHorizontal - 10;
-            }
-            else if (thalmicMyo.pose == Pose.DoubleTap)
-            {
-                Debug.Log("turn speed up");
-            }
-            else if (thalmicMyo.pose == Pose.FingersSpread)
-            {
-                Debug.Log("turn speed down");
-            }
-            else if (thalmicMyo.pose == Pose.Fist)
-            {
-                Debug.Log("Restart");
-            }
-        }
-        else
-        {
-            //Debug.Log("do nothing");
-        }
-
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
+        
     }//FixedUpdate()
 
     private void OnTriggerEnter(Collider other)
