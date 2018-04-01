@@ -96,22 +96,24 @@ public class PlayerController : MonoBehaviour {
         
         float x = JointObject.transform.eulerAngles.x;
         float y = JointObject.transform.eulerAngles.y;
-        //Debug.Log("x " + x);
-        //Debug.Log("y " + y);
-        
+        x = x - diffX;
+        y = y - diffY;
+
+        Debug.Log("x " + x);
+        Debug.Log("y " + y);
         float moveHorizontal = 0;
         float moveVertical = 0;
         //vertical movement
-        if(x > 0.1)        
+        if(x > 5 && x < 180)        
         {
             //move forward
             moveVertical = moveVertical + 0.5f;
         }
-        else if(x < 0.1 && x > 0.0)
+        else if(x < 5 && x > 355)
         {
             // do nothing
         }
-        else if(x < 0.0)
+        else if(x < 355 && x > 180)
         {
             //move backward
             moveVertical = moveVertical - 0.5f;
