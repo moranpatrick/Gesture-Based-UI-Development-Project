@@ -15,8 +15,14 @@ public class PlayerController : MonoBehaviour {
     private int count;
     public Text winText;
     public GameObject pauseImage;
-
     private bool paused;
+
+    private float elapsed;
+    private float tempTime;
+
+    //timer 
+    public Text timerText;
+
    
 
     private void Start()
@@ -25,6 +31,7 @@ public class PlayerController : MonoBehaviour {
         count = 0;
         SetCountText();
         winText.text = "";
+        timerText.text = "";
         paused = false;
     }
 
@@ -32,7 +39,7 @@ public class PlayerController : MonoBehaviour {
     {
 
         ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
-
+        elapsed += Time.deltaTime;
         if (thalmicMyo.pose != _lastPose)
         {
             _lastPose = thalmicMyo.pose;
@@ -47,14 +54,14 @@ public class PlayerController : MonoBehaviour {
             else if (thalmicMyo.pose == Pose.DoubleTap)
             {   
                 if(paused){
-                    Debug.Log("Quitting...");
                     Application.Quit();
                 }
                 // Pause Menu Logic
                 rb.isKinematic = true;
                 paused = true;
                 pauseImage.SetActive(true);
-
+                tempTime = elapsed;
+                
             }
             else if (thalmicMyo.pose == Pose.FingersSpread)
             {
@@ -63,6 +70,7 @@ public class PlayerController : MonoBehaviour {
                     
                     pauseImage.gameObject.SetActive(false);
                     rb.isKinematic = false;
+                    elapsed = tempTime;
                 }
             }
             else if (thalmicMyo.pose == Pose.Fist)
@@ -120,11 +128,16 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
+        if(paused == false)
+        {
+            SetTimerText(elapsed);
+        }
         
     }//FixedUpdate()
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.gameObject.CompareTag("Pick Up"))
         {
             other.gameObject.SetActive(false);
@@ -138,8 +151,15 @@ public class PlayerController : MonoBehaviour {
         countText.text = "Count: " + count.ToString();
         if(count >= 12)
         {
-            winText.text = "You Win!";
+            float winTime = elapsed;
+            winText.text = string.Format("You Win! Your Time: {0:0.00}", winTime);
+
         }
+    }
+
+    void SetTimerText(float t)
+    {
+        timerText.text = string.Format("Timer: {0:0.00}", t);
     }
 
 }
