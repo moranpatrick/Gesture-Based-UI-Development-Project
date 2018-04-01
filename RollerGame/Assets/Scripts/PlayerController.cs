@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
             _lastPose = thalmicMyo.pose;
             if (thalmicMyo.pose == Pose.WaveOut)
             {
-               
+               count = 12;
             }
             else if(thalmicMyo.pose == Pose.WaveIn)
             {
@@ -96,43 +96,59 @@ public class PlayerController : MonoBehaviour {
         
         float x = JointObject.transform.eulerAngles.x;
         float y = JointObject.transform.eulerAngles.y;
-        x = x - diffX;
-        y = y - diffY;
-
+        //Debug.Log("x brefore " + x);
+        //Debug.Log("y before " + y);
+        if(x < diffX)
+        {
+            x = 360 -(diffX - x);
+        }
+        else
+        {
+            x = x - diffX;
+        }
+        if(y < diffY)
+        {
+            y = 360 -(diffY - y);
+        }
+        else
+        {
+            y = y - diffY;
+        }
+        Debug.Log("diffX" + diffX);
         Debug.Log("x " + x);
         Debug.Log("y " + y);
         float moveHorizontal = 0;
         float moveVertical = 0;
         //vertical movement
-        if(x > 5 && x < 180)        
+        if(x > 0 && x < 240)        
         {
             //move forward
-            moveVertical = moveVertical + 0.5f;
+            moveVertical = moveVertical + 1;
         }
-        else if(x < 5 && x > 355)
+        else if(x < 360 && x > 350)
         {
             // do nothing
         }
-        else if(x < 355 && x > 180)
+        else if(x < 350 || x > 240)
         {
             //move backward
-            moveVertical = moveVertical - 0.5f;
+            moveVertical = moveVertical - 1;
         }
 
         //horizontal movement
-        if(y < -0.96 )        
+        if(y > 5 && y < 180)        
         {
             //move right
-            moveHorizontal = moveHorizontal - 1;
+            moveHorizontal = moveHorizontal + 1;
         }
-        else if(y > -0.96 && y < -0.95)
+        else if(y < 5 && y > 355)
         {
             // do nothing
         }
-        else if(y > -0.95)
+        else if(y < 355 && y > 180)
         {
             //move left
-            moveHorizontal = moveHorizontal + 1;
+            moveHorizontal = moveHorizontal - 1;
         }
 
 
@@ -162,6 +178,7 @@ public class PlayerController : MonoBehaviour {
         if(count >= 12)
         {
             float winTime = elapsed;
+            Debug.Log("win time" + winTime);
             winText.text = string.Format("You Win! Your Time: {0:0.00}", winTime);
 
         }

@@ -48,7 +48,6 @@ public class Menu : MonoBehaviour {
 				while(startTime < 5)
 				{
 					startTime += Time.deltaTime;
-					Debug.Log("in do" + startTime);
 					if(startTime > 4)
 					{	  
 						float x = JointObject.transform.eulerAngles.x;
