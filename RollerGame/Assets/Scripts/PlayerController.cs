@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
     private float elapsed;
     private float tempTime;
 
+    private float diffX;
+    private float diffY;
+
     //timer 
     public Text timerText;
 
@@ -33,6 +36,9 @@ public class PlayerController : MonoBehaviour {
         winText.text = "";
         timerText.text = "";
         paused = false;
+        diffX =PlayerPrefs.GetFloat("diffX");
+        diffY =PlayerPrefs.GetFloat("diffY");
+        Debug.Log(diffX);
     }
 
     private void FixedUpdate()
@@ -88,8 +94,10 @@ public class PlayerController : MonoBehaviour {
                
         var JointObject = GameObject.Find("Myo");
         
-        float x = JointObject.transform.right.x;
-        float y = JointObject.transform.right.y;
+        float x = JointObject.transform.eulerAngles.x;
+        float y = JointObject.transform.eulerAngles.y;
+        //Debug.Log("x " + x);
+        //Debug.Log("y " + y);
         
         float moveHorizontal = 0;
         float moveVertical = 0;
@@ -113,7 +121,7 @@ public class PlayerController : MonoBehaviour {
         if(y < -0.96 )        
         {
             //move right
-            moveHorizontal = moveHorizontal + 1;
+            moveHorizontal = moveHorizontal - 1;
         }
         else if(y > -0.96 && y < -0.95)
         {
@@ -122,7 +130,7 @@ public class PlayerController : MonoBehaviour {
         else if(y > -0.95)
         {
             //move left
-            moveHorizontal = moveHorizontal - 1;
+            moveHorizontal = moveHorizontal + 1;
         }
 
 

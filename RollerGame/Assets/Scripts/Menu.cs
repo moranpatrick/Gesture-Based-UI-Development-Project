@@ -7,7 +7,10 @@ using Pose = Thalmic.Myo.Pose;
 public class Menu : MonoBehaviour {
 
 	public GameObject myo = null;
+	public GameObject calibration;
 	private Pose _lastPose = Pose.Unknown;
+
+	private float startTime;
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +40,24 @@ public class Menu : MonoBehaviour {
             }
             else if (thalmicMyo.pose == Pose.Fist)
             {
-			   //Load Scene 1 which is game		   
-			   SceneManager.LoadScene(1);
+				var JointObject = GameObject.Find("Myo");
+    
+			   //show calibration screen for 5 seconds
+				calibration.SetActive(true);
+				
+				while(startTime < 5)
+				{
+					startTime += Time.deltaTime;
+					Debug.Log("in do" + startTime);
+					if(startTime > 4)
+					{	  
+						float x = JointObject.transform.eulerAngles.x;
+        				float y = JointObject.transform.eulerAngles.y; 
+						PlayerPrefs.SetFloat("diffX", x);
+						PlayerPrefs.SetFloat("diffY", y);
+						SceneManager.LoadScene(1);
+					}
+				}
             }
         }
         else
