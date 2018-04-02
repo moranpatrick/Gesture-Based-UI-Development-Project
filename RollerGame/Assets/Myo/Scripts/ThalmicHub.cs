@@ -28,7 +28,7 @@ public class ThalmicHub : MonoBehaviour
     public string applicationIdentifier = "com.example.myo-unity";
 
     // If set to None, pose events are always sent. If set to Standard, pose events are not sent while a Myo is locked.
-    public LockingPolicy lockingPolicy;
+    public LockingPolicy lockingPolicy = LockingPolicy.None;
 
     // True if and only if the hub initialized successfully; typically this is set during Awake, but it can also be
     // set by calling ResetHub() explicitly. The typical reason for initialization to fail is that Myo Connect is not

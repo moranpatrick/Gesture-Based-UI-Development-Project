@@ -94,8 +94,8 @@ public class PlayerController : MonoBehaviour {
                
         var JointObject = GameObject.Find("Myo");
         
-        float x = JointObject.transform.eulerAngles.x;
-        float y = JointObject.transform.eulerAngles.y;
+        float x = JointObject.transform.rotation.eulerAngles.x;
+        float y = JointObject.transform.rotation.eulerAngles.y;
         //Debug.Log("x brefore " + x);
         //Debug.Log("y before " + y);
         if(x < diffX)
