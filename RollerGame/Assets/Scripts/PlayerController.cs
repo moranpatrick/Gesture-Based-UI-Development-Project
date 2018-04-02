@@ -54,11 +54,13 @@ public class PlayerController : MonoBehaviour {
                 if(paused){
                     Application.Quit();
                 }
-                // Pause Menu Logic
-                rb.isKinematic = true;
-                paused = true;
-                pauseImage.SetActive(true);
-                tempTime = elapsed;
+                else{
+                    // Pause Menu Logic
+                    rb.isKinematic = true;
+                    paused = true;
+                    pauseImage.SetActive(true);
+                    tempTime = elapsed;
+                }
                 
             }
             else if (thalmicMyo.pose == Pose.FingersSpread)
@@ -139,7 +141,7 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
-        if(paused == false)
+        if(paused == false && count != 12)
         {
             SetTimerText(elapsed);
         }

@@ -36,7 +36,7 @@ public class Menu : MonoBehaviour {
             }
             else if (thalmicMyo.pose == Pose.FingersSpread)
             {
-           		
+           	
             }
             else if (thalmicMyo.pose == Pose.Fist)
             {
