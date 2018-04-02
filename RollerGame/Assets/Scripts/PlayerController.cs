@@ -49,15 +49,7 @@ public class PlayerController : MonoBehaviour {
         if (thalmicMyo.pose != _lastPose)
         {
             _lastPose = thalmicMyo.pose;
-            if (thalmicMyo.pose == Pose.WaveOut)
-            {
-               count = 12;
-            }
-            else if(thalmicMyo.pose == Pose.WaveIn)
-            {
-                
-            }
-            else if (thalmicMyo.pose == Pose.DoubleTap)
+            if (thalmicMyo.pose == Pose.DoubleTap)
             {   
                 if(paused){
                     Application.Quit();
@@ -96,8 +88,7 @@ public class PlayerController : MonoBehaviour {
         
         float x = JointObject.transform.rotation.eulerAngles.x;
         float y = JointObject.transform.rotation.eulerAngles.y;
-        //Debug.Log("x brefore " + x);
-        //Debug.Log("y before " + y);
+
         if(x < diffX)
         {
             x = 360 -(diffX - x);
@@ -114,38 +105,32 @@ public class PlayerController : MonoBehaviour {
         {
             y = y - diffY;
         }
-        Debug.Log("diffX" + diffX);
-        Debug.Log("x " + x);
-        Debug.Log("y " + y);
+    
         float moveHorizontal = 0;
         float moveVertical = 0;
         //vertical movement
-        if(x > 0 && x < 240)        
+        if(x > 5 && x < 180)        
         {
             //move forward
             moveVertical = moveVertical + 1;
         }
-        else if(x < 360 && x > 350)
+        else if(x < 5 && x > 0)
         {
             // do nothing
         }
-        else if(x < 350 || x > 240)
+        else if(x < 360 || x > 180)
         {
             //move backward
             moveVertical = moveVertical - 1;
         }
 
         //horizontal movement
-        if(y > 5 && y < 180)        
+        if(y > 0 && y < 180)        
         {
             //move right
             moveHorizontal = moveHorizontal + 1;
         }
-        else if(y < 5 && y > 355)
-        {
-            // do nothing
-        }
-        else if(y < 355 && y > 180)
+        else if(y < 360 && y > 180)
         {
             //move left
             moveHorizontal = moveHorizontal - 1;
