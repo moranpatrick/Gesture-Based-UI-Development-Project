@@ -74,7 +74,7 @@ We used the default gestures the Myo Armband offers. These are:
 
 ![Finger-spread](images/finger-spread.gif)
 
-After downloading the Myo connect and using its set-up program, we got to test each of these gestures. Being able to tighten and loosen the armband around your armband allowed for more accurate results. After playing around with each gesture we eventually decided what gestures would suit our application the best. 
+After downloading the Myo connect and using its set-up program, we got to test each of these gestures. Being able to tighten and loosen the armband around your arm allowed for more accurate results. After playing around with each gesture we eventually decided what gestures would suit our application the best. 
 
 In our Menu scene the user is offered 2 options:
 
