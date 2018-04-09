@@ -38,9 +38,80 @@ Unity is a cross-platform game engine developed by [Unity Technologies](https://
 
 # Purpose of the application<a name = "purpose"></a>
 
+For our application we decided to build a unity game using a Myo Armband as its controller. This would be our first attempt building a unity game and thought it would be a good addition to our github portfolio and our resume.
+
+The main purpose of the application (linking up a unity game with a Myo Armaband) is the fun aspect myo brings to it. You could easily control the game with a keyboard or even a mouse but using your own physical body to control your game control brought a real kick to the game.
+
+Taking on two new technologies is always tough so we kept the game concept simple. We created a Roller ball game. The user would navigate through a maze and collect tokens until all 12 tokens were collected. 
+
+Myo implementation was achieved by using the gyroscope within the myo armband to control the direction/movement of the ball object. The menu options were also controlled my the Myo Armband. We used the built in gestures to control Game stage control. eg Menu -> New Game or exit would be chosen using the default gestures.     
+
 [Top](#contents) 
 
 # Gestures identified as appropriate for this application<a name = "gestures"></a>
+
+As explained above we created a Roller Ball game.
+
+We used the default gestures the Myo Armband offers. These are:
+
+* Wave Left
+
+![wave-left](images/wave-in.gif)
+
+* Wave Right
+
+![wave-right](images/wave-out.gif)
+
+* Fist
+
+![Fist](images/fist.gif)
+
+* Double Tap
+
+![Double-Tap](images/double-tap.gif)
+
+* Fingers Spread
+
+![Finger-spread](images/finger-spread.gif)
+
+After downloading the Myo connect and using its set-up program, we got to test each of these gestures. Being able to tighten and loosen the armband around your armband allowed for more accurate results. After playing around with each gesture we eventually decided what gestures would suit our application the best. 
+
+In our Menu scene the user is offered 2 options:
+
+1. New Game 
+    Here we use the fist gesture as it works well and feels intuitive.
+2. Exit
+    Here we use the double-tap gesture. This requires double the action and speed, so it made sense to use as it would be hard to do by accident. This will close the application.
+
+As the game is being run the user can use one gesture:
+
+1. Double-tap
+    If you double-tap as the game is being played you will bring up the pause Menu. This was chosen again because this gesture requires double the action and speed, so it made sense to use as it would be hard to do by accident and very annoying mid-game if you kept pausing.
+
+In our Pause Menu the user has 3 options:
+
+1. New Game
+    Here we use the fist gesture as it works well and feels intuitive.
+2. Resume Game
+    Here we used the Spread-fingers gesture as it works well and feels like your dismissing your pause menu with your hand gesture.
+3. Exit Game
+    Here we use the double-tap gesture again. This requires double the action and speed, so it made sense to use as it would be hard to do by  accident. This will bring you back to the main menu.
+
+For our ball controller we used the gyroscope within our myo to control its direction.
+
+* Forward motion:
+Achieve this by holding your fore arm at a 80-90 degree angle to your body or lower. 
+
+* Backward motion:
+Achieve this by moving your fore arm up towards your chest. 
+
+* Right motion:
+Move your fore arm to the right in a rotation from your elbow.
+
+* Left motion:
+Move your fore arm to the left in a rotation from your elbow.
+
+We found this setup very effective. Only having trouble with configuring the gyroscope rotation to give more consistent figures.
 
 [Top](#contents) 
 
@@ -62,6 +133,21 @@ Or you can run our application in developer mode with the following prerequisite
 [Top](#contents) 
 
 # Conclusions & Recommendations<a name = "conclusion"></a>
+
+### Overall Outcome
+
+All in all we were happy with our finished project. We set out our objectives which were to create a unity game and implement a Myo Armband as its controller. We created an application with a easy to follow natural UI, A game that functions with our Myo gestures and all in all is quite enjoyable. 
+
+As it was our first time using these technologies it was a challenge and took time. Would of prefferred to have offered more game play options but thought it was more important to focus on a complete working implementation of our Myo/Unity Game. 
+
+### Issues
+We struggled at first getting our heads around unity but with tutorials we quickly learned. We also ran into some issues with unity IDE and also connecting to the Myo. Debugging and testing was tedious as Unity IDE kept freezing and would have to restart. We looked up Unity forums but it just seemed to be a common problem known in the unity community and we could not find a fix.
+
+This was also common with our Myo aswell. As for Myo there wasnt that much documentation on Myo and unity so we just worked with what we had and got through it. Hopefully in future these will be fixed.
+
+### What we learned
+
+We learned how powerful unity can be. For a free game developer platform edition it offers alot to a developer. We learned new concepts related to gaming. As for Myo we were quite surprised how well the gestures performed. The applications are endless and with the custom profile options you can develope your own gestures which are unique to you only. 
 
 [Top](#contents) 
 
