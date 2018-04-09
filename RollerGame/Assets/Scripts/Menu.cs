@@ -32,7 +32,7 @@ public class Menu : MonoBehaviour {
             if (thalmicMyo.pose == Pose.DoubleTap)
             {
 			   // Quit Application
-			   Application.Quit();
+			   if (!Application.isEditor) System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
             else if (thalmicMyo.pose == Pose.FingersSpread)
             {

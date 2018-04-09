@@ -52,7 +52,9 @@ public class PlayerController : MonoBehaviour {
             if (thalmicMyo.pose == Pose.DoubleTap)
             {   
                 if(paused){
-                    Application.Quit();
+                    Debug.Log("in exit");
+                    //quit application
+                    if (!Application.isEditor) System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
                 else{
                     // Pause Menu Logic

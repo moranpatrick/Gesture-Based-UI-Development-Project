@@ -117,6 +117,8 @@ We found this setup very effective. Only having trouble with configuring the gyr
 
 # Architecture for the solution<a name = "arc"></a>
 
+![wave-left](images/Architecture.png)
+
 [Top](#contents) 
 
 # How To Run<a name = "run"></a>
