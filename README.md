@@ -117,7 +117,22 @@ We found this setup very effective. Only having trouble with configuring the gyr
 
 # Architecture for the solution<a name = "arc"></a>
 
-![wave-left](images/Architecture.png)
+* The Architecture of our project is made up of:  
+    * A Myo Armband
+    * Unity 5 working with C# Scripts 
+
+Overview Of Our Architecture:
+![wave-left](images/unity2.png)
+
+We Have The Following C# Scripts:  
+* Player Controller
+    * This script handles the player controller movement, counting objects collided with and displaying game result.
+* Camera Controller
+    * This script manages the camera movement, following the player.
+* Rotator
+    * This script is used to rotate the collectable pick up objects
+* Menu
+    * This script handles the menu scene when you start the game.
 
 [Top](#contents) 
 
