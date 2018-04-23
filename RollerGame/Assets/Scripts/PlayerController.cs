@@ -62,8 +62,7 @@ public class PlayerController : MonoBehaviour {
                     paused = true;
                     pauseImage.SetActive(true);
                     tempTime = elapsed;
-                }
-                
+                }            
             }
             else if (thalmicMyo.pose == Pose.FingersSpread)
             {

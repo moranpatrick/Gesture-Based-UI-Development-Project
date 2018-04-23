@@ -8,6 +8,7 @@
 ## [Contents](#contents)
 * [Introduction](#intro)
 * [Purpose of the application](#purpose)
+* [Video Demo](#demo)
 * [Gestures identified as appropriate for this application](#gestures) 
 * [Architecture for the solution](#arc)
 * [How To Run](#run)  
@@ -47,6 +48,11 @@ Taking on two new technologies is always tough so we kept the game concept simpl
 Myo implementation was achieved by using the gyroscope within the myo armband to control the direction/movement of the ball object. The menu options were also controlled my the Myo Armband. We used the built in gestures to control Game stage control. eg Menu -> New Game or exit would be chosen using the default gestures.     
 
 [Top](#contents) 
+
+# Video Demo<a name = "demo"></a>
+<kbd>[![IMAGE ALT TEXT HERE](images/video.PNG)](https://youtu.be/UWeh-3TlkCo)</kbd>
+
+[Top](#contents)
 
 # Gestures identified as appropriate for this application<a name = "gestures"></a>
 
